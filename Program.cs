@@ -16,6 +16,10 @@ class Program
            numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
            EscreverBuffer(buffer);
         }
+
+        //fluxoDoArquivo.Close();
+
+        Console.ReadLine();
     }
 
     static void EscreverBuffer(byte[] buffer) 
@@ -23,12 +27,5 @@ class Program
         var utf8 = new UTF8Encoding();
         var texto = utf8.GetString(buffer);
         Console.Write(texto);
-
-        //foreach (var meuByte in buffer) 
-        //{
-        //    Console.Write(meuByte);
-        //    Console.Write(" ");
-        //}
     }
-   
 }
