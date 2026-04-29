@@ -6,20 +6,21 @@ class Program
     static void Main(string[] args)
     {
         var endereçoDoArquivo = "contas.txt";
-        var numeroDeBytesLidos = -1; 
-        var fluxoDoArquivo = new FileStream(endereçoDoArquivo, FileMode.Open);
-
-        var buffer = new byte[1024];
-
-        while (numeroDeBytesLidos != 0)
+        using (var fluxoDoArquivo = new FileStream(endereçoDoArquivo, FileMode.Open)) 
         {
-           numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
-           EscreverBuffer(buffer);
+            var numeroDeBytesLidos = -1;
+
+            var buffer = new byte[1024];
+
+            while (numeroDeBytesLidos != 0)
+            {
+                numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
+                EscreverBuffer(buffer);
+            }
+
+            fluxoDoArquivo.Close();
+            Console.ReadLine();
         }
-
-        //fluxoDoArquivo.Close();
-
-        Console.ReadLine();
     }
 
     static void EscreverBuffer(byte[] buffer) 
